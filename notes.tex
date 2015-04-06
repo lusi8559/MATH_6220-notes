@@ -1,0 +1,588 @@
+\documentclass{article}
+\title{Topology 2 Notes}
+\author{Lucas Simon}
+\date{\copyright\ 2015 Judith Packer, All Rights Reserved} 
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage{mathrsfs}
+\usepackage{mathpazo}
+\usepackage[all]{xy}
+
+\begin{document}
+
+\maketitle
+
+\section{March 6, 2015}
+
+\textbf{NOTICE:} Reminder, there is an open book exam on the 11th, next week on Wednesday. There will be four multipart questions during the 55 minute exam.
+
+Back to the two-torus, we identify the sides of $I \times I$
+%% DRAW A PICTURE HERE
+Let $Y = S^1 \times S^1$ and $Y^1 = A \cup B$. We showed last time that $H_q(Y, Y^1) \cong H_1(E^2, \dot{E}^2) = \mathbb{Z}$ for $q = 2$ and $0$ otherwise.
+Recall from the long exact sequence in homology, we have
+
+\[
+\begin{tikzcd}
+H_2(Y^1) \cong 0 \arrow[r, "i_*"] & H_2(Y) \arrow[r, "j_*"] & H_2(Y, Y^1) \arrow[r, "\partial_2"] & H_1(Y^1) \cong \mathbb{Z} \oplus \mathbb{Z} \arrow[r, "i_*"] & H_1(Y) \arrow[r, "j_*"] & H_1(Y, Y^1) = 0
+\end{tikzcd}
+\]
+then we get the sequence
+\[
+0 \to H_2(Y) \xrightarrow{j_*} H_2(Y, Y^1) \cong \mathbb{Z} \xrightarrow{\partial_2} \mathbb{Z} \oplus \mathbb{Z} \xrightarrow{i_*} H_1(Y) \xrightarrow{j_*} 0
+\]
+Then we have $\text{im}(j_*) \cong H_2(Y) \cong \text{ker}(\partial_*) ? = H_2(Y, Y^1) \cong \mathbb{Z}$.
+
+We make a guess before diving into the mess, $H_2(Y) \cong \mathbb{Z}$. So $j_*(n) = dn$ for $|d| > 1$? If $\text{im}(j_*) \cong \text{ker}{i_*}$. But then $\mathbb{Z}/ |d|\mathbb{Z}$ would be a subgroup of $H_1(Y^1)$, which is a contradition since every free abelian group is torsion free.
+
+So if $H_2(Y, Y^1) \neq 0$, then $j_*$ is onto $H_2(Y, Y^1) \cong \mathbb{Z}$. We want to show $\partial_*$ is the zero map for $H_2(Y, Y^1) \cong \mathbb{Z} \to H_1(Y^1) \cong \mathbb{Z} \oplus \mathbb{Z}$.
+
+Notice that a mpa $\mathbb{Z} \xrightarrow{M} \mathbb{Z} \oplus \mathbb{Z}$ for $\text{ker}(M) = |d|\mathbb{Z}$. Then by algebra
+\[
+\begin{tikzcd}
+\mathbb{Z} \arrow[d, "\pi"] \arrow[r, "M"] & \mathbb{Z} \oplus \mathbb{Z} \\
+\mathbb{Z}/ \text{ker}(M) \arrow[ur, dotted, "\tilde{M}"]
+\end{tikzcd}
+\]
+
+Recall part of diagram from page 202
+
+\[
+\begin{tikzcd}
+H_2(E^2, \dot{E}^2) \arrow[r, "\cong \tilde{\partial_*}"] \arrow[d, "\cong f_*"] &  H_1(\dot{E}^2) \arrow[d, "\cong f_*"] \\
+H_2(Y, Y^1) \arrow[r, "\cong \partial_*"] & H_1(Y^1)
+\end{tikzcd}
+\]
+
+Looking at the graph of the boundary, the generator for $H_1(\dot{E}^2)$ is $T_{e_1} + T_{e_2} + T_{e_3} + T_{e_4}$ where $T_{e_1}(x) = (x,0)$, $T_{e_2}(x) = (1,x)$, $T_{e_3}(x) = (1-x,1)$, $T_{e_4}(x) = (0, 1-x)$,
+
+LOOK AT IMAGE AND FILL IN DETAILS
+
+therefore $f_*$ of the generators of $H_1(\dot{E}^2)$ is $f_*(T_{e_1} + T_{e_2} + T_{e_3} + T_{e_4}) = f_*(T_{e_1}) + f_*(T_{e_2}) + f_*(T_{e_3}) + f_*(T_{e_4}) = 0$.
+
+Therefore $\partial_* = (f_*) \circ \tilde{\partial_*} f_*^{-1} = 0$. Then we have the exact sequence
+\[
+0 \xrightarrow{\partial_*} H_1(Y^1) \cong \mathbb{Z} \oplus \mathbb{Z} \xrightarrow{i_*} H_1(Y) \to 0
+\]
+hence $i_*$ is an isomorphism. Therefore we have the following computation for $Y$, the torus
+\[
+H_q(Y) = 0 q \geq 2 \mathbb{Z} q = 2 \mathbb{Z} \oplus \mathbb{Z} q=1 \mathbb{Z} q = 0
+\]
+
+Now we condsider the homology of the real projective plane $\mathbb{RP}^2$. Let $g: E^2 \to E^2/\sim$ relation on the boundary. Let $X = g(E^2)$ and $X^1 = g(\dot{E}^2) = S^1$. Remark, we can go through the same proof from the torus involving deformation retracts, excision, and the 5-lemma: to prove $H_1(E^2, \dot{E}^2) \xrightarrow{f_* \cong} H_q(X, X^1)$ go through as before to show
+\[
+H_q(E^2, \dot{E}^2) \xrightarrow{g_* \cong} H_q(X, X^1) = \mathbb{Z} q = 2 0 \text{otherwise}
+\]
+Now look back at the long exact sequence
+\[
+\begin{tikzcd}
+H_3(X, X^1) \arrow[r] & H_2(X^1) \arrow[r] & H_2(X) \arrow[r] & H_2(X, X^1)\cong \mathbb{Z} \arrow[r, "\partial_*"] H_1(X^1) \arrow[r, "i_*"] & H_1(X) \arrow[r, "j_*"] & H_1(X, X^1) \cong 0
+\end{tikzcd}
+\]
+Then we look at the generators
+
+FINISH with IMAGE....
+
+the $\partial_*$ is multiplication by 2!
+
+\section{March 9, 2015 (Monday)}
+We have an exam on Wednesday. This covers chapter II sections 1-6 and chapter III sections 1-3.
+Overview of material
+
+(1) Definition of singular n-cubes: $C_n(X) = Q_n(X)/ D_n(X)$ where $T: I^n \to X$ is degenerate if for one of the coordinates, T is invariant.
+
+(2) Boundary map $\partial_n(T) = \sum_{j=1}^n [A_jT - B_jT]$. Note that $\partial_{n-1} \circ \partial{n} = 0$. We have n-cycles $Z_n(X) = \text{ker}(\partial_n)$ and n-boundaries $B_n(X) = \text{im}(\partial_{n+1})$.
+
+(3) We get the homology groups $H_n(X) = Z_n(X) / B_n(X)$ and we have the augmentation map $\varepsilon: C_n(X) \to \mathbb{Z}$ where $\tilde{Z}_0 = \text{ker}(\varepsilon_*)$. We have $B_0(X) \subset Z_n(X)$ so we get the reduced homology $\tilde{H}_0(X) = \tilde{Z}_0(X) / B_0(X) \subset H_0(X)$.
+
+(4) We get homomophisms in homoloy from continuous maps $f: X \to Y$. We obtain $f_*:H_n(X) \to H_n(Y)$ for $n \geq 0$ and $f_*: \tilde{H}_0(X) \to \tilde{H}_0(Y)$. If $f,g:X \to Y$ are homotopic then there is a $F: X \times I \to I$ such that $F(x,0) = f(x)$ and $F(x,1) = g(x)$. Then $f_* = g_*$ on $H_n(X) \to H_n(Y)$ and $\tilde{H}_0(X) \to \tilde{H}_0(Y)$.
+
+(5) We say spaces $X$ and $Y$ are homotopic if there exists continuous functions $f: X \to Y$ and $f: Y \to X$ such that $f \circ g \simeq id_X$ and $f \circ g \simeq id_Y$. If $X$ and $Y$ are homotopy equivalent then $f_*: H_n(X) \xrightarrow{\cong} H_n(Y)$ for each $n \geq 0$.
+
+(6) Let $A \subseteq X$ then $A$ is said to be a deformation retraction of $X$ if there exists $r: X \to A$ such that $r$ is homotopic to the identity map on $X$, $id_X$. If $A$ is a deformation retract of $X$ then $i_*: H_n(A) \xrightarrow{\cong} H_n(X)$ and $r_*: H_n(X) \xrightarrow{\cong} H_n(A)$.
+
+(7) Homology of a pair $(X,A)$. We have $C_n(X,A) = C_n(X) / C_n(A)$ and we have $\partial_n: C_n(X,A) \to C_{n-1}(X,A)$ where $\partial_{n-1} \circ \partial_n = 0$ for all $n \geq 1$. We have the relative n-boundaries $B_n(X,A) = \text{im}\partial_{n+1} \subset Z_n(X,A)$. We have the relative homology group $H_n(X,A) = Z_n(X,A) / B_n(X,A)$.
+
+(8) Using the short exact sequence of chain complexes
+\[
+\begin{tikzcd}
+0 \arrow[r] & C_\bullet(A) \arrow[r, "i"] & C_\bullet(X) \arrow[r, "j"] & C_\bullet(X,A) \arrow[r] & 0
+\end{tikzcd}
+\]
+We get the long exact sequence:
+
+ADD SNAKING LONG EXACT SEQUENCE
+
+(9) Let $f: (X,A) \to (Y,B)$; that is, $f:X \to Y$ where $f(A) \subseteq B$. We can apply the five lemma to get
+\[
+\begin{tikzcd}
+H_n(A) \arrow[r] \arrow[d, "f_*"] & H_n(X) \arrow[r] \arrow[d, "f_*"] & H_n(X,A) \arrow[r] \arrow[d, "f_*"] & H_{n-1}(A) \arrow[d, "f_*"]\\
+H_n(B) \arrow[r] & H_n(Y) \arrow[r] & H_n(Y, B) \arrow[r] & H_{n-1}(B) 
+\end{tikzcd}
+\]
+
+(10) We then got the excision theorem: Let $(X,A)$ be a pair of topological spaces and suppose $W \subseteq A$ such that $\bar{W} \subset \text{Int}(A)$. Then $i_*: H_n(X \sim W, A \sim W) \to H_n(X,A)$ for $n \geq 0$  is an isomorphism.
+
+(11) Once we got this theorem, we were able to deduce the homology groups of the n-sphere. Then $S^n \subseteq E^{n+1}$, with $S^n = \{(x_1, \ldots, x_{n+1}: \sum_{j=1}^{n+1} (x_i)^2 = 1 \}$. For $n \geq 1$ this gives
+\[
+H_1(S^n) =
+  \begin{cases}
+   \mathbb{Z} & \text{if } q \in \{0, n \} \\
+   0       & \text{otherwise}
+  \end{cases}
+\]
+
+(12) From proposition 2.4, we get that $H_q(E_n, S^{n-1}) = \mathbb{Z}$ for $q=n$ and 0 otherwise.
+
+(13) If $f: S^n \to S^n$ is a continuous map, define $deg(f)$ as the integer $k$ such that $f_*([1]_{\tilde{H}_n(S^n))}) = k \cdot [1]_{\tilde{H}_n(S^n)}$
+
+(14) Suspension: If $f: S^n \to S^n$ is continuous, then we get the suspension $\Sigma f: S^{n+1} \to S^{n+1}$, we have $def(f) = deg(\Sigma f)$.
+
+(15) Finite regular graphs $(X, X^0)$ where $X^0 = \{ v_i \}_{i=1}^n$ and $X^1 = \{ e_i \}^k_{j=1}$ we have $f_i: [0,1] \to \bar{e}_i \subset X^1$ where $ \bar{e}_i = \{ v \} \cup e_i \cup \{ v' \}$ where $v \neq v'$. Then
+\[
+H_q(X, X^0) =
+\begin{cases}
+\mathbb{Z}^k & \text{for } q = 1\\
+0 & \text{otherwise}
+\end{cases}
+\]
+
+(16) Theorem 3.4: If $(X, X^0)$ be a finite regular graph with $P$ path components, $n$ vertices, and $k$ edges.
+
+\[
+H_q(X) =
+\begin{cases}
+\mathbb{Z}^{p - (n - k)} = \mathbb{Z}^{p - \chi(X,X^0)} & \text{if } q = 1 \\
+\mathbb{Z}^p & \text{if } q = 0 \\
+0 & \text{otherwise}
+\end{cases}
+\]
+Note this implies $\tilde{H}_0(X) = \mathbb{Z}^{p-1}$. We write $S^1$ as a graph.
+
+\section{Meyer-Vietoris Exact Sequence}
+Imagine a torus, look at pieces $A$ and $B$ which have nonempty intersection that looks like a disjoint union of cylinders, and each subset looks like a cylinder. All pieces deformation retract to circles.
+
+Therefore, we know the homology of $A, B$, and $A \cap B$. The inclusion maps
+\begin{align*}
+i: A \cap B \hookrightarrow A & &
+j: A \cap B \hookrightarrow B \\
+k: A \hookrightarrow A \cup B & & 
+l: B \hookrightarrow A \cup B 
+\end{align*}
+We have the induced morphisms in homology
+\begin{align*}
+i_*: H_n(A \cap B) \hookrightarrow H_n(A) & &
+j_*: H_n(A \cap B) \hookrightarrow H_n(B) \\
+k_*: H_n(A) \hookrightarrow H_n(A \cup B) & & 
+l_*: H_n(B) \hookrightarrow H_n(A \cup B)
+\end{align*}
+So consider maps
+\begin{align*}
+\phi_* := (i_*, j_*): H_n(A \cap B) \to H_n(A) \oplus H_n(B) \text{ for all } n \geq 0 \\
+\psi_* := k_* - l_*: H_n(A) \oplus H_n(B) \to H_n(A \cup B)
+\end{align*}
+where $\psi_*([S],[T]) = k_*([S]) - l_*([T])$
+
+\textbf{Theorem:} Let $A$ and $B$ be subspaces of a topological space $X$ such that $X = \text{Int}(A) \cup \text{Int}(B)$. Then there exists a natural homomorphism $\Delta_*:H_n(X) \to H_{n-1}(A \cap B)$ for all $n \geq 1$ giving the following long exact sequence in homology:
+
+\[
+\begin{tikzcd}
+\cdots \arrow[r] & H_n(A \cap B)
+\end{tikzcd}
+\]
+
+%%% \cdots \arrow[r] & H_n(A \cap B) & H_n(A) \oplus H_n(B) \arrow[r] & H_n(A \cap B)
+%
+%        {   & \mbox{} & \mbox{} & \cdots \\
+%            & H_n(A \cap B) & H_n(A) \oplus H_n(B) & H_n(A \cap B) \\
+%            & H_{n-1}(A \cap B) & H_{n-1}(A) \oplus H_{n-1}(B) & H_{n-1}(A \cap B) \\
+%            & \cdots & \mbox{} & \cdots \\
+%            & H_1(A \cap B) & H_1(A) \oplus H_1(B) & H_1(A \cap B) \\
+%            & \tilde{H}_0(A \cap B) & \tilde{H}_0(A) \oplus \tilde{H}_0(B) & \tilde{H}_0(A \cap B) & 0
+Note that in degree 0 the sequence works in reduced homology.
+
+\textbf{Question:} What do we mean by $\Delta_*$ being natural?\\
+Given $(X,A,B)$ and $(X', A', B')$ and a continuous map $f: X \to X'$ such that $f(A) \subseteq A'$ and $f(B) \subset B'$. Then the following diagram commutes:
+\[
+\begin{tikzcd}
+H_n(A \cap B) \arrow[r, "\phi_*"] \arrow[d, "f_*"] & H_n(A) \oplus H_n(B) \arrow[d, "f_*\times f_*"] \arrow[r, "\psi_*"] & H_n(X) \arrow[r, "\Delta_*"]  & H_{n-1}(A \cap B) \arrow[d] \\
+H_n(A' \cap B') \arrow[r, "\phi_*'"] & H_n(A') \oplus H_n(B') \arrow[r, "\Delta_*'"] & H_n(X') \arrow[r]& H_{n-1}(A' \cap B')
+\end{tikzcd}
+\]
+\begin{proof}
+Let $\mathcal{U} = \{ A, B \}$ be a "special" open cover. 
+From the book, we have an isomorphism 
+$\sigma_*:H_n(X, \mathcal{U}) \xrightarrow{\cong} H_n(X)$, the restricted chain $C_n(X, \mathcal{U})$ can be written as $C_n(X, \mathcal{U}) = C_n(A) + C_n(B) \subset C_n(X)$. Recall that we have maps on chains
+\begin{align*}
+i_\sharp: C_n(A \cap B) \to C_n(A) & & j_\sharp: C_n(A \cap B) \to C_n(A)\\
+k'_\sharp: C_n(A) \to C_n(X, \mathcal{U}) \hookrightarrow C_n(X) & & k'_\sharp: C_n(B) \to C_n(X, \mathcal{U}) \hookrightarrow C_n(X)
+\end{align*}
+Then there exists a homomorphism
+\begin{align*}
+\Phi: C_n(A \cap B) \xrightarrow{i_\sharp \times j_\sharp} C_n(A) \oplus C_n(B) \\
+\Psi: C_n(A) \oplus C_n(B) \xrightarrow{k_*' - l_*'}
+\end{align*}
+ Now consider the following complexes
+\begin{align*}
+\mathcal{C} = (C_\bullet = C_\bullet(A \cap B), \partial_\bullet) \\
+\mathcal{D} = (D_\bullet = C_\bullet(A) \oplus C_\bullet(B), \partial_\bullet' = (\partial_\bullet, \partial_\bullet)) \\
+\mathcal{E} = (E_\bullet = C_n(X,\mathcal{U}), \partial_\bullet)
+\end{align*}
+You can check that the following diagram has exact rows and commutes
+\[
+\begin{tikzcd}
+0 \arrow[r]
+& C_n(A \cap B) \arrow[d, "\partial_n"] \arrow[r, "\Phi_n"] 
+& C_n(A) \oplus C_n(B) \arrow[r, "\Psi_n"] \arrow[d, "\partial_n'"] 
+& C_n(X, \mathcal{U}) \arrow[d, "\partial_n"] \arrow[r] 
+& 0 \\
+0 \arrow[r]
+& C_n(A \cap B) \arrow[r, "\Phi_{n-1}"] 
+& C_n(A) \oplus C_n(B) \arrow[r, "\Psi_{n-1}"] 
+& C_n(X, \mathcal{U}) \arrow[r] 
+& 0
+\end{tikzcd}
+\]
+We have $\text{Im}(\Phi_n) = \text{ker}\Psi_n$. Therefor we have the short exact sequence of chain complexes
+\[
+0 \to \mathcal{C} \xrightarrow{\Phi} \mathcal{D} \xrightarrow{\Psi} \mathcal{E} \to 0
+\]
+giving us a long exact sequence with boundary maps $\Delta_n: H_n(\mathcal{E}) \to H_{n-1}(\mathcal{C})$. Because $\sigma_*$ is an isomorphism, we have the natural map.
+\end{proof}
+
+\section{March 16, 2015 (Monday)} Suppose $A$ and $B$ are subsets of $X$ such that $\text{int}(A) \cup \text{int}(B) = X$. Let $\phi_*:(i_*, j_*): H_n(A\cap B) \to H_n(A) \oplus H_n(B)$ and $\psi_* = k_* - k_*:H_n(A) \oplus H_n(B) \to H_n(X)$. The for all $n \geq 1$ there is a natural isomorphism $\Delta_*:H_n(X) \to H_{n-1}(A \cap B)$ giving us the short exact sequence
+\[
+0 \to C_n(A \cap B) \to C_n(A) \oplus C_n(B) \to C_n(X) \to 0
+\]
+Giving us a long exact sequence
+\[
+\textbf{OMITTED... Add later}
+\]
+
+Moreover, if $A \cap B \neq \varnothing$ we can use reduced homology in dimension $0$.
+
+\textbf{Examples:}
+
+(1) Homology of the torus $X = S^1 \times S^1$. We take two sleeves $A$ and $B$ which each deformation retract to a cirlce, and their intersection deformation retracts of a disjoint union of two circles. Drawing out the long exact sequence, we get the part
+\[
+0 \xrightarrow{\psi_*} H_2(X) \xrightarrow{\Delta_*} \mathbb{Z} \oplus \mathbb{Z} \xrightarrow{\phi_*} \mathbb{Z} \oplus \mathbb{Z} \xrightarrow{\psi_*} H_1(X) \xrightarrow{\Delta_*} \tilde{H}_0(A \cap B) \cong \mathbb{Z} \to 0
+\]
+
+Recall that $\Delta_*$ is one to one, so its image is the kernel of $\phi_*$. Likewise, the image of $\phi_* = \text{ker}(\psi_*)$, and $\Delta_*:H_1(X) \to \tilde{H}_0(A \cap B)$ is onto. We must choose generators on our topological space, so $H_1(A \cap B) = \mathbb{Z}(\text{gen1})\oplus\mathbb{Z}(\text{gen2})$. Then $\phi_*(m,n) = (m-n, m-n) \in H_1(A) \oplus H_1(B)$. Hence the kernel of $\phi_*$ is the image of $\Delta_*$, so it's isomorphic to $\mathbb{Z}$. Then, the image of $\phi_*$ is the diagonal, which is the kernel of $\psi_*$. Now, we look at the short exact sequence
+\[
+0 \to H_1(A) \oplus H_1(B) / \text{im}\phi_* = \text{ker}\psi_* \xrightarrow{\psi_*} H_1(X) \xrightarrow{\Delta_*} \mathbb{Z} \to 0
+\]
+Notice $\{ (m,n) : m,n \in \mathbb{Z} \}/\{ (l,l): l \in \mathbb{Z} \}$, which is $\mathbb{Z}$. (observe this quotient is just $\mathbb{Z}^2/\mathbb{Z}$). Now we can look at 
+\[
+0 \to \mathbb{Z} \to H_1(X) to \mathbb{Z} \to 0
+\]
+Because the term on the right is free, the sequence splits.
+
+(2) We can use induction to find the homology groups of the spheres using overlapping overhemispheres.
+
+\textbf{Jordan-Brauer Separation Theory:} (Related to the Jordan curve theorem) 
+Let $\gamma: [0,1] \to \mathbb{R}^2$ 
+be a simple closed curve so that 
+$\gamma(0) = \gamma(1)$. Let 
+$\mathcal{C} = \{ \gamma(t) : 0 \leq t \leq 1 \}$. Then 
+$\mathbb{R}^2 \sim \mathcal{C}$. In homological terms, we only need to show 
+$H_0(\mathbb{R}^2 \sim \mathcal{C}) \cong \mathbb{Z}^2$ or 
+$\tilde{H}_0(\mathbb{R}^2 \sim \mathcal{C}) \cong \mathbb{Z}$. Consider 
+$\mathbb{R}^2 \sim \mathcal{C}$ on $S^2$. Let $(0,0)$ be the inside of the curve. Put $S62$ on "top of" $(0,0)$. Using the inverse of stereographic projection, we may take the curve onto
+$S^2$. Call it $\tilde{\mathcal{C}}$. We can show that 
+$\tilde{H}_0(S^2 \sim \tilde{\mathcal{C}}) \cong \mathbb{Z}$.
+
+\textbf{Theorem}(Jordan-Brauer Separation Theorem) Let $A \subset S^n$ with $n \geq 1$. and suppose $A$ is homeomorphic to $S^k$ for $0 \leq k \leq n-1$, then
+\[
+\tilde{H}_q(S^n - A) = \begin{cases}
+\mathbb{Z} & q = n - k - 1 \\
+0 & q \neq n - k - 1
+\end{cases}
+\]
+For $n=2, k=1$, we have the original theorem.
+
+\textbf{Lemma 6.1} Let $Y$ be a subset of $S^n$ that is homeomorphic to intervals $I^k$ for $0 \leq k \leq n$. Then the reduced homology of $\tilde{H}_q (S^n \sim Y) = 0$ for $q \in \mathbb{N} \cup \{ 0 \}$.
+
+\section{March 18, 2015}
+
+\textbf{Jordan Brauer Separation Theorem -- Continued}
+
+\textbf{Lemma 6.1}
+Let $Y \subset S^n$ that is homeomorphic to a $k$-cube $I^k$ for $0 \leq k \leq n$. Then $\tilde{H}_i(S^n \sim Y) = 0$ for each $i \in \mathbb{N} \cup \{ 0 \}$. True for $Y = h(I^0)=$ single point. We have $\tilde{H}_i(S^n \sim \{ pt \}) \cong \tilde{H}_i(\mathbb{R}^n) \cong 0$ for each $n \geq 0$. Assume now that if $f_j: I^j \to S^n$ are homeomorphisms onto their image $0 \leq j \leq k-1 < n$, then $\tilde{H}_i(S^n\sim f_j(I^j)) = 0$ for each $i \in \mathbb{N} \cup \{ 0 \}$. Now let $h: I^k \to S^n$ be a homeomorphism onto its image. We have to show $\tilde{H}_i(S^n \sim h(I^k))$ for each $i \in \mathbb{N} \cup \{ 0 \}$. Let $Y_0 = h([0, \frac{1}{2}]\times I^{k=1})$, $Y_1 = h([\frac{1}{2}, 1]\times I^{k-1})$, so $Y = Y_0 \cup Y_1 = h(I_k)$. Note $Y_0 \cap Y_1 = h(\{ \frac{1}{2} \} \times I^{k-1})$ which is in the homeomorphic image of $I^k-1$. Not $\tilde{H}_i(S^n \sim Y_0 \cap Y_1) = 0$ for each $i \geq 0$, by induction hypothesis. We have $Y_0, Y_1, Y, Y_0 \cap Y_1$ all closed and let $A = S^n \sim Y_0$ and $B = S^n \sim Y_1$, which are open. Note $A \cup B = S^n \sim (Y_0 \cap Y_1)$ and $A \cap B = S^n \sim (Y_0 \cup Y_1) = S^n \sim Y$. We use the Meyer-Vietoris sequence
+
+\[
+\begin{tikzcd}
+\tilde{H}_k(A \cup B) \arrow[r, "\Delta_*"] & \tilde{H}_i(A \cap B) \arrow[r, "\phi_*"] & \tilde{H}_i(A) \oplus \tilde{H}_i(B) \arrow[r, "\psi_*"] & \tilde{H}_i(A \cup B)
+\end{tikzcd}
+\]
+We have $\tilde{H}_{i+1}(A \cup B) = 0$ an $\tilde{H}_i(A \cup B) = 0$,
+therefore $\phi_*$ is an isomorphism. Suppose by way of contradiction that $\exists [s] \in \tilde{H}_i(A \cap B)$ such that $[s] \neq 0$. Then $\phi_*([s]) = ((i_0)_*([s]), (i_1)_*([s])) \neq 0$ in $\tilde{H}_i(A)\oplus \tilde{H}_i(B)$.
+
+Now fix $n$, by induction on k. Then $\tilde{H}_i(A)$
+
+$Y_{0,0} \cup Y_{0,1} = Y_0 \sim \text{k-cube}$ so $S^n \sim Y_{0,0}$ and $S^n \sim Y_{0,1}$ are open an ... Look at page 63-65 for the proof. 
+
+Applications?:
+
+\section{March 20, 2015 (Friday)}
+\textbf{Proposition:} Let $A \subset S^n$ with $A$ homeomorphic to $S^{n-1}$. Then write $S^n \sim A \cong X_1 \coprod X_2$ where $X_1$ and $X_2$ are two path-components of $S^n \sim A$. Then $\partial X_1 = \partial X_2$.
+
+We are interested in finding the relationship between the fundamental group of $X$ and it's first homology group.
+
+\textbf{Definition:} Let $G$ be a discrete group. The commutator subgroup $[G,G]$ is the smallest subgroup of $G$ that contains $\{ aba^{-1}b^{-1} : a,b \in G \}$.
+
+\textbf{Theorem (group theory):} Let $G$ be a discrete group then $[G,G]$ is a normal subgroup and $G/[G,G]$ is abelian. Also, if $\phi: G \to A$ is a group homomorphism into an abelian group $A$, then $[G,G] \subset \text{ker}\phi$.
+\begin{proof}
+Let $aba^{-1}b^{-1}$ and consider $g(aba^{-1}b^{-1})g^{-1}$ for some $g \in G$. This equals $gag^{-1}gbg^{-1}ga^{-1}g^{-1}b^{-1}g^{-1}$. This simplifies to $a'b'(a')^{-1}(b')^{-1}$ for $a' = gag^{-1}$ and $b' = gbg^{-1}$. Therefore $g[G,G]g^{-1} \subset [G,G]$, hence is normal. We know $G/[G,G]$ is abelian since $aba^{-1}b^{-1} \mapsto 1$ under the quotient map.
+
+Similarly, if $\phi:G \to A$ is a homomorphism with $A$ abelian, we have $\phi(aba^{-1}b^{-1}) = A$, hence $[G,G] \subset \text{ker}\phi$.
+\end{proof}
+
+Let $X$ be a path connected space and fix some $\{ x_0 \} \subset X$. We want to show there is a homomorphism $h_X: \pi_1(X,x_0) \to H_1(X)$ and moreover $\pi_1(X,x_0)/[\pi_1(X,x_0),\pi_1(X,x_0)]$.
+
+We now define $h_X: \pi_1(X, x_0) \to H_1(X)$. Let $\alpha \in \pi_1(X,x_0)$. Suppose $f:I \to X$ is a loop based at $x_0$ with $[f] = \alpha$. Since $\partial f = -(A_1f -B_1f) = f(1) - f(0) = 0$, $f \in Z_1(X)$. Define $h_X(\alpha) = [f]$ where $f$ is a loop representing $\alpha$. Suppose $f$ and $g$ are homotopic maps, hence both representing $\alpha \in \pi_1(X,x_0)$, we want $h_X(f) = h_X(g)$. $F:I \times I \to X$ such that $F(x,0) = f(x)$ and $F(x,1) = g(x)$. We have $F \in C_2(X)$ since $F: I^2 \to X$. We check that $g = f + \partial F$. Then $[g] = [f + \partial F] = [f]$ in $H_1(X)$. Then $h_X$ is well-define. Next we show that this map is infact a homomorphism. $h_X(f_1\cdot f_2) = h_X(f_1) + h_X(f_2)$. Recall that
+\[
+f_1 \cdot f_2 = \begin{cases}
+f_1(2t) & 0 \leq t \leq \frac{1}{2} \\
+f_2(2t - 1) & \frac{1}{2} \leq t \leq 1
+\end{cases}
+\]
+After break, we'll show $[f_1 \cdot f_2]_{H_1(X)} = [f_1]_{H_1(X)} + [f_2]_{H_1(X)}$
+
+\section{March 30, 2015 (Monday)}
+Today we study the relationship between $H_1(X)$ and $\pi_1(X,x_0)$ for a path connected space $X$.
+
+\textbf{Theorem:} Fix $x_0 \in X$ in a path connected space $X$. Then, there is agroup homomorphism
+\[
+h_x: \pi_1(X, x_0) \to H_1(X)
+\]
+Moreover, $h_X$ is surjective and its kernel is
+\[
+[\pi_1(X, x_0), \pi_1(X, x_0)]
+\]
+\begin{proof}
+Recall for $\alpha \in \pi_1(X, x_0)$ is represented by $f_\alpha:[0,1] \to X$ with $f_\alpha(0) = f_\alpha(1) = x_0$. Then $h_X(\alpha) = [f_\alpha]$ where $f_\alpha \in Z_1(X)$ and $\partial f_\alpha = 0$. Suppose $f,g : [0,1] \to X$ with $f(0) = f(1) = g(0) = g(1) = x_0$ that both represent $\alpha \in \pi_1(X,x_0)$. Then $f,g$ are homotopic as loops in $X$. So there exists $F:[0,1]\times[0,1] \to X$ with $F(x,0) = f(x)$ and $F(x,1) = g(x)$ for each $x \in X$. Also, $F(0,y) = x_0 = F(1,y)$ for each $y \in [0,1]$. We view $F \in Q_2(X)/D_2(X) = C_2(X)$. Then $\partial F: [0,1] \to X$ is given by $\partial F(x) = -[F(1,x) - F(0,x)] + [F(x,1) - F(x,0)] = -[T_{x_0} - T_{x_0}] + g(x) - f(x)$. Therefore $\partial F(x) + f(x) = g(x)$. Notice that the homology classes are equal; that is, $[f] = [g] \in H_1(X)$. We now show $h_X$ preserves group multiplication. Let $\alpha, \beta \in \pi_1(X, x_0)$ with $\alpha = [f]$ and $\beta = [g]$. We have $f:[0,1] \to X$ and $g:[0,1] \to X$ with $f(0) = f(1) = x_0 = g(0) = g(1)$. Then $\alpha \cdot \beta = [g \star f]$. We set
+\[
+g \star f(x) = \begin{cases}
+f(2x) & 0 \leq x \leq \frac{1}{2} \\
+g(2x - 1) & \frac{1}{2} \leq x \leq 1
+\end{cases}
+\]
+We want to show $h_X([g \star f ]) = h_X([g]) + h_X([f])$. We define $T:[0,1] \times [0,1] \to X$ with $T \in Q_2(X)$ by
+\[
+T(x_1, x_2) = \begin{cases}
+f(x_1 + 2x_2) & x_1 + 2x_2 \leq 1 \\
+g(\frac{x_1 + 2x_2 - 1}{x_1 + 1}) & 1 \leq x_1 + 2x_2
+\end{cases}
+\]
+Then we have 
+\begin{align*}
+\partial T(x) & = -(T(1,x) - T(0,x)) + T(x,1) - T(x,0) \\
+& = -g(\frac{1 + 2x - 1}{1+1}) + \begin{cases}
+f(2x) &  0 \leq x \leq \frac{1}{2} \\
+g(2x - 1) & \frac{1}{2} \leq x \leq 1
+\end{cases} \\
+& + g(\frac{x+2-1}{x+1}) - g(x) \\
+\partial T(x) & = -g(x) + g \star f(x) + g(1) - f(x) 
+\end{align*}
+Notice $g(1) \in D_1(X)$ hence $f + g + \partial T = g \star f$ in $H_1(X)$, so $[f] + [g] = [g \star f]$ therefore $h_X([g] \star [f]) = h_X([g]) + h_X([f])$. Fill in the gaps that $h_X$ is a homomorphism is surjective into $H_1(X)$ and $\text{ker}(h_X) = [\pi_1(X,x_0), \pi_1(X,x_0)]$. You can also check that $h_X: \pi_1(X, x_0) \to H_1(X)$ is natural in the following sense: Let 
+$(X, x_0)$ and $(Y,y_0)$ be path connected spaces with base points $x_0$ and $y_0$ respectively. Let $\phi: X \to Y$ be a basepoint preserving map; that is $\phi(x_0) = y_0$. Then there exists a homomorphism $\phi_*:\pi_1(X, x_0) \to \pi_1(Y, y_0)$ given by $\phi_*(f_\alpha) = \phi \circ f_\alpha$ such that the following diagram commutes:
+\[
+\begin{tikzcd}
+\pi_1(X, x_0) \arrow[r, "\phi_*"] \arrow[d, "h_X"] & \pi_1(Y, y_0) \arrow[d, "h_Y"] \\
+H_1(X) \arrow[r, "\phi_*"] & H_1(Y)
+\end{tikzcd}
+\]
+\end{proof}
+
+\textbf{Adjoining cells to spaces:} Let $X,Y$ be topological spaces and $A \subset Y$ a subspace. Let $f: A \to X$ by a continuous map. Define an equivalence relation on $Y \coprod X$ by $x \sim f(x)$ for any $x \in A$. We call this space $X^*$. This is also notated $Y \cup_f X$ in other books.
+
+The process we described is called attaching $Y$ to $X$.
+
+Observe that $Y$ may not always be embedded into $Y \cup_f X$. Consider $Y = [0,1]$, $A \subset Y$ by $A = \{ 0, 1 \}$, and $X = S^2 \subset \mathbb{R}^3$. Define $f: A \to S^2$ given by $f(0) = f(1) = (0,0,1)$. Now suppose $X$ is fixed and let $Y = \coprod_{i = 1}^k E_i^n$ for $n,k \in \mathbb{N}^+$ with $E_i^n = \{ (x_i) \in \mathbb{R}^n : \sum x_i^2 \leq 1 \}$. Let $A = \coprod_{i = 1}^n S_i^{n-1}$ where each $S_i^{n-1} \subset E_i^n$ where each $S_{i}^{n-1} \subset E_i^n$ with the boundary $\dot{E}_i^n = S^{n-1}_i$. The question is, how do we compute the (relative) homology groups of $Y \cup_f X$? 
+
+\section{April 1, 2015 (Wednesday)}
+Recall $X = \coprod_{i = 1}^k E_i^n$ and $Y = \coprod_{i = 1}^n S_i^{n-1}$. We have $S^{n-1} \subseteq E^n$. Let $X$ be a compact Hausdorff space. The map $f:A \to X$ defined as the restriction of a continuous function $f:S^{n-1} \to X$. We let $X^* = Y \cup_f X$ and $\pi: Y \coprod X \to X^* = X \coprod Y / \sim$. Note that $\pi$ is one to one on $X$ into $X^*$ therefore $X$ is a subspace $X^*$, but $\pi$ may not be one to one on $Y$.
+
+\textbf{Lemma: (EXERCISE)} Let $(X,A)$ and $(Y,B)$ be pairs of spaces where $B \subseteq A \subseteq X$ and $Y \subseteq X$. Suppose that $B$ is a deformation retract of $A$, and $Y$ is a deformation retract of $X$. Then the inclusion map $i: (Y,B) \hookrightarrow (X,A)$ induces an isomorphism $i_*: H_q(Y,B) \to H_q(X, A)$ in relative homology.
+\begin{proof}
+Trivial. This proof comes from two long exact sequences in homology and the five-lemma.
+\end{proof}
+
+\textbf{Theorem:} Let $X^*$ and $X$ be as described from above. Then
+\[
+H_q(X^*, X) = \begin{cases}
+0 & q \neq n \\
+\mathbb{Z}^k & q = n
+\end{cases}
+\]
+\begin{proof}
+
+For each $i$ we have a map $\pi_i = \pi|_{E_n^{(i)}}: (E^n_i, S^{n-1}_i) \to (X^*, X)$, thus we obtain $(\pi|_{E_n^{(i)}})_*: H_q(E^n_i, S^{n-1}_i) \to H_q(X^*, X)$. We thus obtain $H_q(X^*, X) = \bigoplus_{i=1}^k(\pi_i)_*(H_q(E^n_i, S^{n-1}_i))$.
+
+Let $D_i^n = \{ x \in \mathbb{R}^n: \| x \| \leq \frac{1}{2} \} \subseteq E^n_i$. Note $S^{n-1}_i \subseteq E^n_i - D^n_i$. Let $\mathcal{D}_i = \prod_i(D_i^n) \subset X^*$. Let $a_i \in \mathcal{D}_i = \pi_i(0)$ with $0 \in D_i^n \subseteq E^n_i$ with $a_i \in \mathcal{D}_i$
+Let $\mathcal{D} = \cup_{i=1}^k \mathcal{D}_i \subset X^*$. Let $A^0 = \cup^{k}_{i=1} \subset \mathcal{D} \subseteq X^*$. For each $i$ with $1 \leq i \leq k$. We have $(\mathcal{D}_i, \mathcal{D}_i - \{ a_i \}) \subseteq (X^*, X' = X^* - A^0)$, then $(\mathcal{D}, \mathcal{D} - A^0) \subset (X^*, X' = X^* - A^0)$. So by the second problem in the last problem, we have
+\begin{align*}
+H_q(\mathcal{D}, \mathcal{D} - A^0) & = \bigoplus_{i=1}^k H_q(\mathcal{D}_i, (\mathcal{D} - A^0) \cap \mathcal{D}_i) \\
+& = \bigoplus_{i=1}^k H_q(\mathcal{D}_i, \mathcal{D}_i - \{ a_i \})
+\end{align*}
+We now note that $X = \pi(X)$ is a deformation retract of $X^* - A^0$. Since 
+\begin{align*}
+X^* - A^0 &= X^* - \bigcup_{i=1}^k\{ a_i \} \\
+& = \pi(\coprod_{i=1}^k E_i^n \coprod X) - \pi(\coprod \{ 0 \}_i \coprod \varnothing)\\
+& = \pi(\coprod_{i=1}^k (E_i^n - \{ 0 \}) \coprod X)
+\end{align*}
+which deforms to
+\[
+\pi(\coprod_{i=1}^k S^{n-1}_i \coprod X) = X
+\]
+So by the next lemma, the inclusion $i:(X^*, \pi(X)) \to (X^*, X^* - A^0)$ induces an isomorphism $(i)_*: H_q(X^*, X) \xrightarrow{\cong} H_q(X^*, X^* - A^0)$. Consider the inclusion $\Phi: (\mathcal{D}, \mathcal{D}-A^0) \to (X^*, X^* - A^0)$. We claim $\Phi_*: H_q(\mathcal{D}, \mathcal{D}-A^0) \xrightarrow{\cong} H_q(X^*, X^* - A^0)$.
+
+Let $W = X^* - \mathcal{D}$ which is open since $\mathcal{D}$ is closed. Then 
+\begin{align*}
+\bar{W} &= X^* - \text{Int}(\mathcal{D}) \\
+&= X^* - \pi(\bigcup_{i=1}^k\text{Int}(D^n_i)) \\
+&= X^* - \pi(\bigcup_{i=1}^k \{ x \in \mathbb{R}^n : \| x \| < \frac{1}{2} \})
+& \subseteq \text{Int}(X^* - A^0)
+& = X^* - A^0
+\end{align*}
+By the excision theorem $\Phi_*: H_q(X^* - W, (X^* - A^0) - W) \to H_q(X^*, X^* - A^0)$ is an isomorphism for each $q \in \mathbb{N}$. That is $\Phi_*: H_q(\mathcal{D}, \mathcal{D} - A^0) \to H_q(X^*, X^* - A^0)$ is an isomorphism for each $q \in \mathbb{N}$.
+
+Using these facts, $(i_*)^{-1} \circ \Phi_*: H_q(\mathcal{D}, \mathcal{D} - A^0) \to H_q(X^*, X)$ is an isomorphism for each $q \in \mathbb{N}$. To finish the theorem, note
+\begin{align*}
+H_q(\mathcal{D}, \mathcal{D} - A^0) & = \bigoplus_{i = 1}^kH_q(D_i, D_i - \{ 0 \}) \\
+& = \bigoplus_{i=1}^k H_q(E^n_i, S^{n-1}_i) \\
+& = \begin{cases}
+0 & q \neq n \\
+\mathbb{Z}^k & q = n
+\end{cases}
+\end{align*}
+\end{proof}
+
+\textbf{Corollary:} Let $X \to X^*$ where $X^* = U \bigcup_f X$ as in the previous theorem. Then $i_*: H_q(X) \to H_q(X^*)$ is an isomorphism except for possibly $q \in \{ n, n-1 \}$. For those values of $q$ we have the long exact sequence
+\[
+0 \to H_n(X) \to H_n(X^*) \to H_n(X^*, X) \to H_{n-1}(X) \to H_{n-1}(X^*) \to 0
+\]
+\begin{proof}
+For $q > n$ we have $H_{q+1}(X^*, X) = 0$. Look at the photo for the rest of the details.
+\end{proof}
+
+\section{3 March, 2015 (Friday)}
+We give $\mathbb{RP}^n$ the quotient topology from $S^n$.
+
+\textbf{Theorem:} $\mathbb{RP}^n$ is homeomorphic to $E_1^n \bigcup_f \mathbb{RP}^{n-1}$ for 
+\[
+f: \dot{E}^n_1=S^{n-1} \to \to \to \to \to \to \to \mathbb{RP}^{n-1}=S^{n-1}/\sim
+\]
+\begin{proof}
+Recall $S^n \subseteq \mathbb{R}^{n+1}$ is the set $E_+^N \bigcup E_-^n \bigcup S^{n-1}$. When attaching cells, we view $E^n = \{(x_1, \ldots, x_n) : \sum_{i=1}^n x_i^2 = \leq 1 \}$ and $S^{n-1}$ is the boundary of $E_n$. Observe that $E_{+}^n$ is homeomorphic to $E^n$ by 
+\[
+(x_1, \ldots, x_n, x_{n+1}) \mapsto \left(\frac{x_1}{\sqrt{1 - x_{n+1}^2}}, \ldots, \frac{x_1}{\sqrt{1 - x_{n+1}^2}}\right)
+\]
+This map takes the image of $S^{n-1}$ in $E_+^n$ to $S^{n-1}$. Then, consider the diagram
+\[
+\begin{tikzcd}
+&S^{n-1} \arrow[r, "\pi_{n-1}"] \arrow[d] \arrow[ld]& \mathbb{RP}^{n-1} \arrow[d, "\iota"] \\
+E^n_+ \arrow[r, hookrightarrow] & S^n \arrow[r,"\pi_n"] & \mathbb{RP}^n
+\end{tikzcd}
+\]
+We have a map $E_+^n \coprod \mathbb{RP}^{n-1} \to \mathbb{RP}^n$ by the diagram: if $x \in E_+^n$, $\pi_n(x) \in \mathbb{RP}^n$ and if $l \in \mathbb{RP}^{n-1}$ with $\iota(l) \in \mathbb{RP}^n$. Now we chack that is $y \in S^{n-1}$, $\iota \circ \pi_{n-1}(y) = \pi_n(y) \in \mathbb{RP}^n$. Observer this map is surjective and if it's continuous, and only not 1-1 on $S^{n-1}$ from the diagram. Since $\mathbb{RP}^n$ is compact Hausdorff, $\mathbb{RP}^n \cong E^n_+ \bigcup_f \mathbb{RP}^{n-1}$.
+\end{proof}
+
+\textbf{Definition:} A \textbf{finite CW-complex} (or a \textbf{cell-complex}) is a topological space $X$ with a filtration
+\[
+\varnothing = X^{(-1)} \subseteq X^{(0)} \subseteq X^{(1)} \subseteq \cdots \subseteq X^{(n)} = X
+\]
+where you get from the \textbf{$(j-1)$-skeleton} $X^{j-1}$ to the $j$-skeleton $X^{j}$ by attaching a finite number of $j$-cells 
+\[
+\coprod_{i=1}^{k_j} E_i^j
+\]
+along the boundaries
+\[
+\coprod_{i=1}^{k_j} S_i^{j-1}
+\]
+via continuous maps $f_i: S_i^{j-1} \to X^{(j-1)}$ such that 
+\[
+X^{(j)} = \left[\coprod_{i=1}^{k_j}E_i^j \right] \bigcup_f X^{(j-1)}
+\]
+\textbf{Examples:}
+
+(1) We get $S^n$ from $S^{n-1}$ by attaching the lower and upper hemispheres of $S^n$ along $S^{n-1}$.
+
+(2) $\mathbb{RP}^n$ is obtained from the last theorem.
+
+(3) 
+
+\section{April 6, 2015 (Monday)}
+Before talking about homology with coefficients, we need tensor products.
+
+\textbf{Tensor Products:} Observe that the category of abelian groups is equivalent to the category of $\mathbb{Z}$-modules. For $\mathbb{Z}$-modules $A,B$, we have $A \times B = \{ (a,b) | a \in A \text{ and } b \in B \}$. Let $F(A \times B)$ be the free abelian group generated by the pairs $(a,b)$. This is the collection of finite sums of the generators, or more generally
+\[
+\{ \sum m_i (a_i,b_i) | m_i \in \mathbb{Z} \text{ and all but finitely many } m_i = 0 \}
+\]
+Let $R(A \times B)$ be the subgroup of $F(A \times B)$ generated by elements of the form
+\begin{align*}
+(a_1 + a_2, b) + (-1)(a_1, b) + (-1)(a_2, b) & & (a, b_1 + b_2) + (-1)(a,b_1) + (-1)(a,b_2) \\
+(ma,b) + (-1)m(a,b)& & (a,mb) + (-1)m(a,b) 
+\end{align*}
+for $a, a_1, a_2 \in A$, $b, b_1, b_2 \in B$, and $m \in \mathbb{Z}$. We define
+\[
+A \otimes B = A \otimes_\mathbb{Z} B = F(A \times B) / R(A \times B)
+\]
+We omit $\mathbb{Z}$ from $\otimes$ since we only look at $\mathbb{Z}$-modules, but in general, it's a wise idea to specify the ring your modules are over. The \textbf{simple tensors} are the elements under the image of this quotient map. They are of the form
+\begin{align*}
+\pi(1\cdot (a,b)) = a \otimes b
+\end{align*}
+They have the following nice properties:
+\begin{align*}
+(a_1 + a_2)\otimes b = a_1 \otimes b + a_2 \otimes b \\
+a\otimes (b_1 + b_2) = a \otimes b_1 + a \otimes b_2 \\
+m(a \otimes b) = (ma)\otimes b = a \otimes (mb)
+\end{align*}
+\textbf{Proposition:} Tensor products satisfy the following universal mapping property:
+\[
+\begin{tikzcd}
+A \times B \arrow[r, "\phi"] \arrow[d, "\otimes"'] & \mathbb{Z} \\
+A \otimes B \arrow[ru, "\hat{\phi}"']
+\end{tikzcd}
+\]
+That is; for any bilinear map $\phi: A \times B \to \mathbb{Z}$ factors uniquely through $A \otimes B$. This means that there exists a unique map $\hat{\phi}: A \otimes B \to \mathbb{Z}$ such that $\phi = \hat{\phi} \circ \otimes$.
+
+\textbf{Definition:} Given a chain complex $\mathcal{C} = (C_\bullet, \partial_\bullet)$, we define the \textbf{chain complex with coefficients} as
+\[
+\mathcal{C} \otimes G = (C_\bullet \otimes G, \partial_\bullet' = \partial_\bullet \otimes \mathbb{1}_G)
+\]
+Clearly, we need to check that this is in fact a chain complex, but we also need to understand what the tensor product of morphisms actually means! We have the map $\partial_n \times \mathbb{1}_G : F(C_n \times G) \to F(C_{n-1} \times G)$ is defined by
+\[
+(\partial_n \times \mathbb{1}_G) \left( m \sum_{i=1}^N(a_i,g_i) \right) = \sum_{i=1}^N (\partial_n(a_i), g_i)
+\]
+Now, we must quotient by the induced relations $R(C_n \times G)$. I'll give one of them, but leave the rest as an exercise!
+\begin{align*}
+(\partial_n \times \mathbb{1}_G)[(c_1 + c_2, g) - (c_1,g) - (c_2,g)] \\ = (\partial_n(c_1 + c_2), g) + (-1)(\partial_n(c_1), g) + (-1)(\partial_n(c_2), g) \\
+=  (\partial_n(c_1) + \partial_n(c_2), g) + (-1)(\partial_n(c_1), g) + (-1)(\partial_n(c_2), g)
+\end{align*}
+
+Consider the diagram 
+\[
+\{C_n \otimes G \xrightarrow{\partial_n'} C_{n-1}\otimes G\} = \{ C_n \otimes G \xrightarrow{\partial_n \otimes \mathbb{1}_G} C_{n-1}\otimes G \}
+\]
+We have the maps $\partial_n'(c \otimes g) = \partial_n(c) \otimes g$. Since 
+\[
+0 \otimes g = 0 (1 \otimes g) = 1 \otimes 0 = 0
+\]
+and 
+\[
+(\partial_{n-1}'\circ \partial_{n}')(c \otimes g) = (\partial_{n-1}\circ \partial_{n})(c) \otimes g = 0 \otimes g
+\]
+for each $c \otimes g \in C_n \otimes G$, the "complex" with coefficients in $G$ is indeed a complex! Now we can define the homology by
+\[
+H_n(C_\bullet \otimes G) = \frac{Z_n(C_\bullet \otimes G)}{B_n(C_\bullet \otimes G)}
+\]
+The exact and boundary elements are given the obvious definition; that is, the abstract definition.
+
+\textbf{Question:} When does $H_n(C_\bullet \otimes G) = H_n(C_\bullet) \otimes G$. For $\mathbb{Z}$, this is trivial since for any $\mathbb{Z}$-module $M$, $M \otimes \mathbb{Z} = M$ (note this holds true over any ring as well). We answer this question using the universal coefficient theorem.
+\end{document}
